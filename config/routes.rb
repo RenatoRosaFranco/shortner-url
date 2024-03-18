@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Healt check
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # API
   namespace :api do
     namespace :v1 do
-      get 'shortUrl' => 'short_urls#index'
+      get 'shortUrl' => 'short_urls#show', param: :short_url
       post 'data/shorten' => 'short_urls#create'
     end
   end

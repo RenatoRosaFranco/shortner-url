@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Url < ApplicationRecord
+  # Callbacks
+  before_create :create_short_url
 
   # Validations
   validates :short_url, presence: true, uniqueness: true

@@ -11,13 +11,9 @@ module API
         url = Url.new(url_params)
 
         if url.save
-          render json: {
-            short_url: url.short_url
-          }, status: 200
+          render_response(:short_url, @url, UrlSerializer)
         else
-          render json: {
-            message: url.errors.full_messages.first
-          }, status: :unprocessable_entity
+          render_error_response(url.errors.full_messages.first)
         end
       end
       

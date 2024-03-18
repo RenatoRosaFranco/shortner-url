@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include HttpConcern
+  include SerializationConcern
 
-  private
-
-  def not_found(model_name)
-    render json: {
-      message: "#{model_name} not found."
-    }, status: :not_found
-  end
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 end

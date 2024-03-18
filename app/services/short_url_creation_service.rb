@@ -5,7 +5,8 @@ require 'securerandom'
 class ShortUrlCreationService
 
   def self.call(url)
-    url.short_url = generate_short_urls
+    url.short_url = generate_short_url
+    url.save
   end
 
   private

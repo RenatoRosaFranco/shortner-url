@@ -2,10 +2,11 @@
 
 class Url < ApplicationRecord
   # Callbacks
-  before_create :create_short_url
+  after_create :create_short_url
 
   # Validations
-  validates :short_url, presence: true, uniqueness: true
+  validates :short_url, allow_blank: true, uniqueness: true
+  validates :long_url, presence: true
 
   # Methods
   def create_short_url

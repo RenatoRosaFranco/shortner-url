@@ -3,11 +3,11 @@
 module HttpConcern
 
   # Handle not found status
-  def not_found(message = 'Record not found')
-    render json: { error: message }, status: :not_found
+  def not_found(model_name)
+    render json: { error: "#{model_name} not found" }, status: :not_found
   end
 
-  # Render server response
+  # Render server responserou
   def render_response(identifier, data, serializer, status = :ok)
     render json: {
       "#{identifier}": serialize_obj(serializer, data)

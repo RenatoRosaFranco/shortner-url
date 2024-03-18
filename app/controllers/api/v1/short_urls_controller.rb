@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module API
+module Api
   module V1
     class ShortUrlsController < ApplicationController
       rescue_from ActiveRecord::RecordNotFound, with: -> { not_found('Url') }
@@ -11,14 +11,14 @@ module API
         url = Url.new(url_params)
 
         if url.save
-          render_response(:short_url, @url, UrlSerializer)
+          render_response(:short_url, url, UrlSerializer)
         else
           render_error_response(url.errors.full_messages.first)
         end
       end
       
       def show
-        redirect_to @url.long_url
+        redirect_to @url.long_url, allow_other_host: true
       end
 
       private

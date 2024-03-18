@@ -2,8 +2,8 @@
 
 class ShortUrlCreationService
 
-  def self.call
-    generate_short_url
+  def self.call(url)
+    url.short_url = generate_short_url
   end
 
   private
